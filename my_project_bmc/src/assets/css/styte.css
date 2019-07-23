@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+#app{
+    display: flex;
+    flex-direction: column;
+    background: url('../images/bg_earth.jpg') no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+}
+#headerMenu{
+    display: flex;
+    margin: 1em;
+    background: url(../images/navi-bg.png) no-repeat;
+    background-size: 100% 100%;
+    flex-wrap: wrap;
+    height: 97px;
+}
+.menuNav{
+    width: 72px;
+    height: 78px;
+}
+.menuNavRight{
+    flex: 5;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    color: aliceblue;
+}
+.menuNav a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    color: aliceblue;
+}
+.nav_home{
+    background: url(../images/menu.png) 0 0 no-repeat;
+
+}
+.nav_home:hover{
+    background: url(../images/menu.png) 0 -85px no-repeat;
+
+}
+.nav_wizard{
+    background: url(../images/menu.png) -72px 0px no-repeat;
+
+}
+.nav_wizard:hover{
+    background: url(../images/menu.png) -72px -85px no-repeat;
+
+}
+.nav_wan{
+    background: url(../images/menu.png) -144px 0px no-repeat;
+
+}
+.nav_wan:hover{
+    background: url(../images/menu.png) -144px -85px no-repeat;
+
+}
+.nav_sms{
+    background: url(../images/menu.png) -288px 0px no-repeat;
+
+}
+.nav_sms:hover{
+    background: url(../images/menu.png) -288px -85px no-repeat;
+
+}
+.nav_wifi{
+    background: url(../images/menu.png) -360px 0px no-repeat;
+
+}
+.nav_wifi:hover{
+    background: url(../images/menu.png) -360px -85px no-repeat;
+
+}
+.nav_security{
+    background: url(../images/menu.png) -504px 0 no-repeat;
+
+}
+.nav_security:hover{
+    background: url(../images/menu.png) -504px -85px no-repeat;
+
+}
+.nav_system{
+    background: url(../images/menu.png) -576px 0 no-repeat;
+
+}
+.nav_system:hover{
+    background: url(../images/menu.png) -576px -85px no-repeat;
+
+}
