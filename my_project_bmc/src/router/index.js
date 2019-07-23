@@ -73,10 +73,15 @@ const router = new Router({
   routes: routers
 })
 router.beforeEach((to,from,next) =>{
-  if(to.path == '/login'){
+  if(sessionStorage.getItem('loginTime') == '1'){
     next();
   }else{
-    next('/login');  
+    if(to.path == '/login'){
+       next();
+    }else{
+      next('/login');
+    }
   }
+  next();
 })
  export default router

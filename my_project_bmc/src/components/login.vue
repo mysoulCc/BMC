@@ -41,7 +41,8 @@ export default {
     methods:{
         login(){
             if(this.username === 'admin' && this.password === 'admin'){
-                this.$router.push('/index');
+                sessionStorage.setItem("loginTime",'1')
+                this.$router.push('/');
             }else{
                 alert("账号或者密码错误，请重新输入！");
             }
