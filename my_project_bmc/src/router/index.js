@@ -10,6 +10,12 @@ import System from '@/components/index/System'
 import WAN from '@/components/index/WAN'
 import WiFi from '@/components/index/WiFi'
 import Wizard from '@/components/index/Wizard'
+import APN_Setting from '@/components/index/WAN/APN_Setting'
+import Connection_Setting from '@/components/index/WAN/Connection_Setting'
+import Connection from '@/components/index/WAN/Connection'
+import Network_Mode from '@/components/index/WAN/Network_Mode'
+import PIN from '@/components/index/WAN/PIN'
+import PLMN from '@/components/index/WAN/PLMN'
 
 Vue.use(Router)
 
@@ -32,7 +38,39 @@ const routers = [
       {
         path: '/WAN',
         name: 'wanLink',
-        component: WAN
+        component: WAN,
+        children:[
+          {
+            path: '/Connection',
+            name: 'ConnectionLink',
+            component: Connection
+          },
+          {
+            path: '/Connection_Setting',
+            name: 'ConnectionSettingLink',
+            component: Connection_Setting
+          },
+          {
+            path: '/APN_Setting',
+            name: 'APNLink',
+            component: APN_Setting
+          },
+          {
+            path: '/Network_Mode',
+            name: 'NetworkLink',
+            component: Network_Mode
+          },
+          {
+            path: '/PIN',
+            name: 'PINLink',
+            component: PIN
+          },
+          {
+            path: '/PLMN',
+            name: 'PLMNLink',
+            component: PLMN
+          }         
+        ], redirect:'/Connection',
       },
       {
         path: '/LAN',
