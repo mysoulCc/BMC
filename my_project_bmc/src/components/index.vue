@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import store from '../store';
 export default {
   name: 'indexLink',
   data () {
@@ -86,9 +85,11 @@ export default {
     }
   },
   created(){
-    store.commit('increment');
-    console.log(store.state.count)
-    this.ContentName = store.state.count;
+    // store.commit('increment');
+    // console.log(store.state.count)
+    // this.ContentName = store.state.count;
+    console.log(this.$store.state.ContentName);
+    
   }
 }
 </script>

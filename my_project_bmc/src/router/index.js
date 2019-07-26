@@ -17,6 +17,7 @@ import Network_Mode from '@/components/index/WAN/Network_Mode'
 import PIN from '@/components/index/WAN/PIN'
 import PLMN from '@/components/index/WAN/PLMN'
 
+
 Vue.use(Router)
 
 const routers = [
@@ -110,16 +111,5 @@ const router = new Router({
   mode: 'history',
   routes: routers
 })
-router.beforeEach((to,from,next) =>{
-  if(sessionStorage.getItem('loginTime') == '1'){
-    next();
-  }else{
-    if(to.path == '/login'){
-       next();
-    }else{
-      next('/login');
-    }
-  }
-  next();
-})
+
  export default router

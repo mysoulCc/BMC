@@ -3,11 +3,11 @@ import Vue from 'vue'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
-        ContentName:''
+        ContentName:'111'
     },
     mutations: {
-        increment (state) {
-          state.count = 'aaa'
+        increment (state,value) {
+          state.count = value;
         }
       }
 })
