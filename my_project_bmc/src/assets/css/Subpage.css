@@ -1,0 +1,11 @@
+.SubpageContent{
+    display: flex;
+}
+.menuNav-left{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+.SubpageContent-right{
+    flex: 8;
+}

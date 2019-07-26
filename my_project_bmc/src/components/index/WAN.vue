@@ -1,9 +1,13 @@
 <template>
-    <div id="wan">
-       <li class="menuNav-left" v-for="leftmenu in leftmenus">
-        <router-link :to="`${leftmenu.path}`" v-bind:class="leftmenu.className">{{leftmenu.name}}</router-link>
-      </li>
-        <router-view />
+    <div id="wan" class="SubpageContent">
+      <ul  class="menuNav-left">
+           <li v-for="leftmenu in leftmenus">
+                <router-link :to="`${leftmenu.path}`" v-bind:class="leftmenu.className">{{leftmenu.name}}</router-link>
+            </li>
+      </ul>
+        <div class="SubpageContent-right">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>

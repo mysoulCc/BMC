@@ -33,16 +33,19 @@
       </li>
     </ul>
     <div id="content">
+      <h2>{{ContentName}}</h2>
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import store from '../store';
 export default {
   name: 'indexLink',
   data () {
     return {
+      ContentName:'',
      headermenus:[
        {
           path:'/',
@@ -81,11 +84,17 @@ export default {
        }
      ]
     }
+  },
+  created(){
+    store.commit('increment');
+    console.log(store.state.count)
+    this.ContentName = store.state.count;
   }
 }
 </script>
 <style>
   @import url('../assets/css/styte.css');
+  @import url('../assets/css/Subpage.css');
 </style>
 
 
