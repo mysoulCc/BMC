@@ -10,6 +10,10 @@ export default {
         return{
             msg:'这是home界面'
         }
+    },
+    created(){
+        this.msg = this.$store.state.ContentName
+        
     }
 }
 </script>

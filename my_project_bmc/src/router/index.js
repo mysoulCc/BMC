@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 import index from '@/components/index'
 import login from '@/components/login'
 import Home from '@/components/index/Home'
@@ -111,5 +112,17 @@ const router = new Router({
   mode: 'history',
   routes: routers
 })
-
+router.beforeEach((to,from,next) =>{
+  store.commit('increment',to.name);
+  if(sessionStorage.getItem('loginTime') == '1'){
+    next();
+  }else{
+    if(to.path == '/login'){
+       next();
+    }else{
+      next('/login');
+    }
+  }
+  next();
+})
  export default router

@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store';
+import store from './store'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -29,21 +29,8 @@ Vue.component('Content-Name',{
 })
 new Vue({
   el: '#app',
-  router,
   store,
+  router,
   components: { App },
   template: '<App/>'
-})
-router.beforeEach((to,from,next) =>{
-  store.commit('increment',to.name);
-  if(sessionStorage.getItem('loginTime') == '1'){
-    next();
-  }else{
-    if(to.path == '/login'){
-       next();
-    }else{
-      next('/login');
-    }
-  }
-  next();
 })
