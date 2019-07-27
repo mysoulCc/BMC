@@ -7,6 +7,26 @@ import store from './store';
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+Vue.component('Content-Name',{
+  template:'<h2>{{name}}</h2>',
+  data(){
+    return{
+      name:''
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  watch:{
+    '$route':'fetchData'
+  },
+  methods:{
+    fetchData(){
+    
+    this.name = this.$route.name; 
+   }
+  }
+})
 new Vue({
   el: '#app',
   router,
@@ -16,7 +36,6 @@ new Vue({
 })
 router.beforeEach((to,from,next) =>{
   store.commit('increment',to.name);
-  console.log(store.state.count)
   if(sessionStorage.getItem('loginTime') == '1'){
     next();
   }else{

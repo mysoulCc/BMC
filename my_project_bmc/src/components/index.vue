@@ -33,7 +33,7 @@
       </li>
     </ul>
     <div id="content">
-      <h2>{{ContentName}}</h2>
+      <Content-Name></Content-Name>
       <router-view />
     </div>
   </div>
@@ -44,7 +44,6 @@ export default {
   name: 'indexLink',
   data () {
     return {
-      ContentName:'',
      headermenus:[
        {
           path:'/',
@@ -88,7 +87,7 @@ export default {
     // store.commit('increment');
     // console.log(store.state.count)
     // this.ContentName = store.state.count;
-    console.log(this.$store.state.ContentName);
+    //console.log(this.$store.state.ContentName);
     
   }
 }
