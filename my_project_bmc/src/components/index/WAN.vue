@@ -12,42 +12,14 @@
 </template>
 <script>
 export default {
-    name:'wanLink',
+    name:'WAN',
     data(){
         return{
-            leftmenus:[
-                {
-                    path: '/Connection',
-                    name: 'ConnectionLink',
-                    className: 'Connection'           
-                },
-                {
-                    path: '/Connection_Setting',
-                    name: 'ConnectionSettingLink',
-                    className: 'Connection_Setting'
-                },
-                {
-                    path: '/APN_Setting',
-                    name: 'APNLink',
-                    className: 'APN_Setting'
-                },
-                {
-                    path: '/Network_Mode',
-                    name: 'NetworkLink',
-                    className: 'Network_Mode'
-                },
-                {
-                    path: '/PIN',
-                    name: 'PINLink',
-                    className: 'PIN'
-                },
-                {
-                    path: '/PLMN',
-                    name: 'PLMNLink',
-                    className: 'PLMN'
-                }   
-            ]
+           leftmenus:[] 
         }
+    },
+    created(){
+        this.leftmenus = this.$store.state.moduleWanMenus.WANLeftMenus
     }
 }
 </script>

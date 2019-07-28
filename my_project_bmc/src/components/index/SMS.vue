@@ -1,15 +1,25 @@
 <template>
-    <div id="sms">
-        {{msg}}
+     <div id="sms" class="SubpageContent">
+      <ul  class="menuNav-left">
+           <li v-for="leftmenu in leftmenus">
+                <router-link :to="`${leftmenu.path}`" v-bind:class="leftmenu.className">{{leftmenu.name}}</router-link>
+            </li>
+      </ul>
+        <div class="SubpageContent-right">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    name:'smsLink',
+    name:'SMS',
     data(){
         return{
-            msg:'这是sms界面'
+            leftmenus:[]
         }
+    },
+    created(){
+        this.leftmenus = this.$store.state.moduleSMSMenus.SMSLeftMenus
     }
 }
 </script>

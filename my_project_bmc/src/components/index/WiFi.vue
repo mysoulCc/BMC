@@ -1,15 +1,25 @@
 <template>
-    <div id="wifi">
-        {{msg}}
+    <div id="wifi" class="SubpageContent">
+      <ul  class="menuNav-left">
+           <li v-for="leftmenu in leftmenus">
+                <router-link :to="`${leftmenu.path}`" v-bind:class="leftmenu.className">{{leftmenu.name}}</router-link>
+            </li>
+      </ul>
+        <div class="SubpageContent-right">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    name:'wifiLink',
+    name:'WiFi',
     data(){
         return{
-            msg:'这是wifi界面'
+            leftmenus:[]
         }
+    },
+    created(){
+        this.leftmenus = this.$store.state.moduleWiFiMenus.WiFiLeftMenus
     }
 }
 </script>

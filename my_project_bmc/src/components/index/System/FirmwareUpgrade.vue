@@ -1,14 +1,14 @@
 <template>
-    <div id="lan">
+    <div id="FirmwareUpgrade">
         {{msg}}
     </div>
 </template>
 <script>
 export default {
-    name:'LAN',
+    name:'FirmwareUpgradeLink',
     data(){
         return{
-            msg:'这是lan界面'
+            msg:'这是FirmwareUpgrade页面'
         }
     }
 }

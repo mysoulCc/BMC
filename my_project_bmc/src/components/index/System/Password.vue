@@ -1,14 +1,14 @@
 <template>
-    <div id="lan">
+    <div id="Password">
         {{msg}}
     </div>
 </template>
 <script>
 export default {
-    name:'LAN',
+    name:'PasswordLink',
     data(){
         return{
-            msg:'这是lan界面'
+            msg:'这是Password页面'
         }
     }
 }

@@ -1,14 +1,14 @@
 <template>
-    <div id="lan">
+    <div id="MACFilter">
         {{msg}}
     </div>
 </template>
 <script>
 export default {
-    name:'LAN',
+    name:'MACFilterLink',
     data(){
         return{
-            msg:'这是lan界面'
+            msg:'这是MACFilter页面'
         }
     }
 }

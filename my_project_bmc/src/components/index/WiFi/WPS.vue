@@ -1,14 +1,14 @@
 <template>
-    <div id="lan">
+    <div id="WPS">
         {{msg}}
     </div>
 </template>
 <script>
 export default {
-    name:'LAN',
+    name:'WPSLink',
     data(){
         return{
-            msg:'这是lan界面'
+            msg:'这是WPS页面'
         }
     }
 }

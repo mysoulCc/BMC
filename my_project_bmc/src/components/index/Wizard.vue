@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name:'wizardLink',
+    name:'Wizard',
     data(){
         return{
             msg:'这是wizard界面'

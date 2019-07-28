@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name:'homeLink',
+    name:'Home',
     data(){
         return{
             msg:'这是home界面'

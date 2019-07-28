@@ -23,16 +23,8 @@ export default {
       headermenus:[]
     }
   },
-  created(){
-    // store.commit('increment');
-    // console.log(store.state.count)
-    // this.ContentName = store.state.count;
-    //console.log(this.$store.state.ContentName);
-    //debugger;
-    // console.log(this.$store.state.headermenus);
-      this.headermenus = this.$store.state.headermenus
-    //  console.log(this.headermenus);
-     
+  created(){ 
+      this.headermenus = this.$store.state.moduleHeaderMenus.headermenus 
   }
 }
 </script>

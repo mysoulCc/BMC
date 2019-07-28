@@ -6,6 +6,10 @@
     flex-direction: column;
     flex: 2;
     border: 1px solid red;
+    
+}
+.menuNav-left li a{
+    color: aliceblue;
 }
 .SubpageContent-right{
     flex: 8;

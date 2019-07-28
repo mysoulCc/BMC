@@ -1,14 +1,14 @@
 <template>
-    <div id="lan">
+    <div id="Basic">
         {{msg}}
     </div>
 </template>
 <script>
 export default {
-    name:'LAN',
+    name:'BasicLink',
     data(){
         return{
-            msg:'这是lan界面'
+            msg:'这是Basic页面'
         }
     }
 }
