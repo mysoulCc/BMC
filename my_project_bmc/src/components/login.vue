@@ -40,12 +40,21 @@ export default {
     },
     methods:{
         login(){
-            if(this.username === 'admin' && this.password === 'admin'){
-               this.$store.commit('login_in',this.password);
-                this.$router.push('/');
-            }else{
-                alert("账号或者密码错误，请重新输入！");
-            }
+            let _this = this;
+            this.axios.get('api/loginDate')
+            .then(response =>{
+                 if(_this.username === response.data.username && _this.password === response.data.userpassword){
+                    _this.$store.commit('login_in',response.data.token);
+                    _this.$router.push('/');
+                }else{
+                    alert("账号或者密码错误，请重新输入！");
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+                
+            })
+            
         }
     }
 }
