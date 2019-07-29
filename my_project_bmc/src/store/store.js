@@ -10,11 +10,16 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-        ContentName:''        
+        ContentName:'',
+        token:''        
     },
     mutations: {
         increment (state,value) {
           state.ContentName = value;
+        },
+        login_in(state,value){
+            sessionStorage.setItem('token',value);
+            state.token = value
         }
       },
       modules:{

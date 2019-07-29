@@ -49,7 +49,7 @@ const routers = [
   {
     path: '/',
     name: 'indexLink',
-    component: index,
+    component: index,  
     children:[
       {
         path: '/',
@@ -59,7 +59,7 @@ const routers = [
       {
         path: '/Wizard',
         name: 'Wizard',
-        component: Wizard
+        component: Wizard     
       },
       {
         path: '/WAN',
@@ -241,15 +241,14 @@ const router = new Router({
 })
 router.beforeEach((to,from,next) =>{
   store.commit('increment',to.name);
-  if(sessionStorage.getItem('loginTime') == '1'){
+  if(sessionStorage.getItem('token')){
     next();
   }else{
-    if(to.path == '/login'){
-       next();
+    if(to.path == "/login"){
+      next();
     }else{
-      next('/login');
+      next('/login')
     }
   }
-  next();
 })
  export default router

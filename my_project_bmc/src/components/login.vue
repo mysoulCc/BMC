@@ -12,11 +12,11 @@
             <tbody>
                 <tr>
                     <th>Account</th>
-                    <td><input type="text" name="username" v-model="username" id="username"></td>
+                    <td><input type="text" name="username" v-model="username" id="username" @keyup.enter="login"></td>
                 </tr>
                 <tr>
                     <th>Password</th>
-                    <td><input type="password" name="password" v-model="password" id="password"></td>
+                    <td><input type="password" name="password" v-model="password" id="password" @keyup.enter="login"></td>
                 </tr>
                 <tr>               
                     <td><input type="button" value="Login" name="button" id="login_button" @click="login"></td>
@@ -41,7 +41,7 @@ export default {
     methods:{
         login(){
             if(this.username === 'admin' && this.password === 'admin'){
-                sessionStorage.setItem("loginTime",'1')
+               this.$store.commit('login_in',this.password);
                 this.$router.push('/');
             }else{
                 alert("账号或者密码错误，请重新输入！");

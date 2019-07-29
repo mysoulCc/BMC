@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store/store'
 Vue.config.productionTip = false
+require('./mock')
 
 /* eslint-disable no-new */
 Vue.component('Content-Name',{
@@ -22,7 +23,6 @@ Vue.component('Content-Name',{
   },
   methods:{
     fetchData(){
-    
     this.name = this.$route.name; 
    }
   }
