@@ -1,5 +1,5 @@
 <template>
-    <div id="wizard">
+    <div id="wizard"  class="SubpageContent">
         {{msg}}
     </div>
 </template>

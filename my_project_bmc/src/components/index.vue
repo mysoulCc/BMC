@@ -8,20 +8,25 @@
         FW Version : 1.00
       </li>
     </ul>
+    <Content-Name></Content-Name>
     <div id="content">
-      <Content-Name></Content-Name>
+      
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import GlobalComponent from '@/components/GlobalComponent'
 export default {
   name: 'indexLink',
   data () {
     return {
       headermenus:[]
     }
+  },
+  components:{
+    'Content-Name': GlobalComponent
   },
   created(){ 
       this.headermenus = this.$store.state.moduleHeaderMenus.headermenus 

@@ -11,26 +11,6 @@ require('./mock')
 
 Vue.prototype.axios = axios;
 
-/* eslint-disable no-new */
-Vue.component('Content-Name',{
-  template:'<h2>{{name}}</h2>',
-  data(){
-    return{
-      name:''
-    }
-  },
-  created () {
-    this.fetchData()
-  },
-  watch:{
-    '$route':'fetchData'
-  },
-  methods:{
-    fetchData(){
-    this.name = this.$route.name; 
-   }
-  }
-})
 new Vue({
   el: '#app',
   store,

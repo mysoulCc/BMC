@@ -239,8 +239,8 @@ const router = new Router({
   mode: 'history',
   routes: routers
 })
-router.beforeEach((to,from,next) =>{
-  store.commit('increment',to.name);
+router.beforeEach((to,from,next) =>{  
+store.commit('increment',to.matched[1].name);
   if(sessionStorage.getItem('token')){
     next();
   }else{

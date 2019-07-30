@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name:'ConnectionLink',
+    name:'WAN',
     data(){
         return{
             msg:'这是Connection页面'
