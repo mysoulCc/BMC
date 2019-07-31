@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td>New Message</td>
-                    <td>{{Signal_Type}}</td>
+                    <td>{{New_Message}}</td>
                 </tr>
                 <tr>
                     <td>IPV4 Connect Status</td>
@@ -54,36 +54,8 @@
              <h3><font>System</font></h3>   
             <div class="home_content">                              
                 <tr>
-                    <td>SIM Status</td>
-                    <td>{{SIM_Status}}</td>
-                </tr>
-                <tr>
-                    <td>Signal Strength</td>
-                    <td>{{Signal_Strength}}</td>
-                </tr>
-                <tr>
-                    <td>Signal Type</td>
-                    <td>{{Signal_Type}}</td>
-                </tr>
-                <tr>
-                    <td>New Message</td>
-                    <td>{{Signal_Type}}</td>
-                </tr>
-                <tr>
-                    <td>IPV4 Connect Status</td>
-                    <td>{{IPV4_Connect_Status}}</td>
-                </tr>
-                <tr>
-                    <td>IPV6 Connect Status</td>
-                    <td>{{IPV6_Connect_Status}}</td>
-                </tr>
-                <tr>
-                    <td>Roaming Status</td>
-                    <td>{{Roaming_Status}}</td>
-                </tr>
-                <tr>
-                    <td>Operators Information</td>
-                    <td>{{Operators_Information}}</td>
+                    <td >Uptime</td>
+                    <td>{{Uptime}}</td>
                 </tr>
             </div>
         </div>
