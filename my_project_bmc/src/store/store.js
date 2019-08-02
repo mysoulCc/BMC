@@ -20,6 +20,10 @@ const store = new Vuex.Store({
         login_in(state,value){
             sessionStorage.setItem('token',value);
             state.token = value
+        },
+        login_out(state){
+            sessionStorage.removeItem('token');
+            state.token = ''
         }
       },
       modules:{
