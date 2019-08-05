@@ -6,6 +6,7 @@ import SMSPagingMenu from './SMSPagingMenu'
 import WiFiPagingMenu from './WiFiPagingMenu'
 import SecurityPagingMenu from './SecurityPagingMenu'
 import SystemPagingMenu from './SystemPagingMenu'
+import WizardPagingMenu from './WizardPagingMenu'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -32,7 +33,8 @@ const store = new Vuex.Store({
          moduleSMSMenus:SMSPagingMenu,
          moduleWiFiMenus:WiFiPagingMenu,
          moduleSecurityMenus:SecurityPagingMenu,
-         moduleSystemMenus:SystemPagingMenu
+         moduleSystemMenus:SystemPagingMenu,
+         moduleWizardMenus:WizardPagingMenu
       }
 })
 export default store;

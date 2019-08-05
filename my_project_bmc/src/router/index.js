@@ -42,6 +42,11 @@ import FirmwareUpgrade from '@/components/index/System/FirmwareUpgrade'
 import Language from '@/components/index/System/Language'
 import Password from '@/components/index/System/Password'
 import Reboot from '@/components/index/System/Reboot'
+// Paging menu Wizard
+import Wizard_Connection from '@/components/index/Wizard/Wizard_Connection'
+import Wizard_LAN from '@/components/index/Wizard/Wizard_LAN'
+import Wizard_WAN from '@/components/index/Wizard/Wizard_WAN'
+import Wizard_WiFi from '@/components/index/Wizard/Wizard_WiFi'
 
 Vue.use(Router)
 
@@ -59,7 +64,29 @@ const routers = [
       {
         path: '/Wizard',
         name: 'Wizard',
-        component: Wizard     
+        component: Wizard,
+        children:[
+          {
+            path:'/Wizard_LAN',
+            name:'LAN Settings',
+            component:Wizard_LAN
+          },
+          {
+            path:'/Wizard_WAN',
+            name:'WAN Settings',
+            component:Wizard_WAN
+          },
+          {
+            path:'/Wizard_WiFi',
+            name:'Connection Settings',
+            component:Wizard_WiFi
+          },
+          {
+            path:'/Wizard_Connection',
+            name:'WiFi Settings',
+            component:Wizard_Connection
+          }
+        ], redirect:'/Wizard_LAN',     
       },
       {
         path: '/WAN',
