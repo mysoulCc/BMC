@@ -2,24 +2,28 @@ const WizardMenus = {
     state:{
         WizardHeaderMenu:[
             {
+                id:1,
                 path:'/Wizard_LAN',
                 name:'LAN Settings',
                 className: 'Wizard_LAN'
               },
               {
+                id:2,
                 path:'/Wizard_WAN',
                 name:'WAN Settings',
                 className: 'Wizard_WAN'
               },
               {
-                path:'/Wizard_WiFi',
+                id:3,
+                path:'/Wizard_Connection',
                 name:'Connection Settings',
-                className: 'Wizard_WiFi'
+                className: 'Wizard_Connection'
               },
               {
-                path:'/Wizard_Connection',
+                id:4,
+                path:'/Wizard_WiFi',
                 name:'WiFi Settings',
-                className: 'Wizard_Connection'
+                className: 'Wizard_WiFi'
               }
         ]
     },

@@ -211,12 +211,6 @@ export default {
 }
 </script>
 <style scoped>
-    #home{
-        background-color: #fff;
-        border: 1px solid #8bd3f4;
-        margin: 20px;
-        padding: 20px;
-    }
     .home_left{
         flex: 1;
     }
