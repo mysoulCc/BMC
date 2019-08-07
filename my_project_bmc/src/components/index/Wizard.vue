@@ -13,10 +13,10 @@
         </div>
         <div class="wizardButton">
             <input type="button" class='BackButton' value="Back" @click="Back()" v-if="activeId === 1 ? false:true">
-            <input type="button" class='NextButton' value="Next" @click="apply()" v-if="activeId === 4 ? true:false">
+            <input type="button" class='NextButton' value="Apply" @click="doset()" v-if="activeId === 4 ? true:false">
             <input type="button" class='NextButton' value="Next" @click="Next()" v-else>
         </div>
-        <v-Confirm></v-Confirm>
+        <v-Confirm :show-dialog="showDialog" :confirm-msg="Czas"></v-Confirm>
     </div>
 </template>
 <script>
@@ -24,6 +24,8 @@ export default {
     name:'Wizard',
     data(){
         return{
+            showDialog:false,
+            Czas:'20',
             WizardItems:[],
             activeId:1
         }
@@ -64,8 +66,16 @@ export default {
                     break;
             }
         },
-        apply:function(){
-            alert('123')
+        doset:function(){
+            this.showDialog = true;
+            let WizardCountdown = window.setInterval(() => {
+                this.Czas--;
+                if(this.Czas == 0 ){
+                    window.clearInterval(WizardCountdown);
+                    this.$store.commit('login_out');
+                    this.$router.push('/login');                
+                }
+            },1000)
         }
     },
     beforeRouteUpdate (to, from, next) {

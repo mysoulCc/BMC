@@ -50,3 +50,11 @@ Mock.mock('api/homeDate', 'get',(req,res)=>{
         }
     }
 })
+Mock.mock('api/wizardDate', 'get',(req,res)=>{
+    return{      
+        'LanConfiguration':{
+            'IpAddress':'192.168.0.1',
+            'IpSubnetMask':'255.255.255.0'
+        }
+    }
+})

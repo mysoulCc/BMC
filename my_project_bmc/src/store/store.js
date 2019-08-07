@@ -7,6 +7,8 @@ import WiFiPagingMenu from './WiFiPagingMenu'
 import SecurityPagingMenu from './SecurityPagingMenu'
 import SystemPagingMenu from './SystemPagingMenu'
 import WizardPagingMenu from './WizardPagingMenu'
+
+import WizardAPI from '../store/API/WizardAPI'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -24,7 +26,7 @@ const store = new Vuex.Store({
         },
         login_out(state){
             sessionStorage.removeItem('token');
-            state.token = ''
+            state.token = '';
         }
       },
       modules:{
@@ -34,7 +36,8 @@ const store = new Vuex.Store({
          moduleWiFiMenus:WiFiPagingMenu,
          moduleSecurityMenus:SecurityPagingMenu,
          moduleSystemMenus:SystemPagingMenu,
-         moduleWizardMenus:WizardPagingMenu
+         moduleWizardMenus:WizardPagingMenu,
+         moduleWizardAPI:WizardAPI
       }
 })
 export default store;

@@ -22,3 +22,19 @@
     margin: 20px;
     padding: 20px;
 }
+#Wizard_LAN{
+    display: inline-block;
+    padding: 30px 0 120px 40px;
+}
+#Wizard_LAN > h3{
+    background: #aaaaaa;
+    display: inline-block;
+    color: #fff;
+    margin: 0 6px;
+    padding: 3px;
+    font-size: 14px;
+}
+.wizardContentClass{
+    border: 1px solid #ababab;
+    padding: 20px;
+}
