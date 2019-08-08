@@ -32,8 +32,20 @@ export default {
         
     // },
     mounted(){
-           
-        this.wizradIP = this.$store.state.moduleWizardAPI.data
+        this.GetWizardApi() 
+        
+    },
+    methods:{
+        async GetWizardApi(data){         
+            try {         
+                let res = await this.axios.get('api/wizardDate', {params: data});
+                this.$store.dispatch('saveForm',res.data);               
+                this.wizradIP = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpAddress;
+                this.wizradSubnet_Mask = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpSubnetMask;
+            } catch (err) {
+                console.log(err)
+            }
+        }  
     },
     beforeRouteLeave (to, from, next) {
         console.log(this.wizradIP);
