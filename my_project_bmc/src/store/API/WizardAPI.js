@@ -1,13 +1,18 @@
 import axios from 'axios'
 const WzoardModule = {
-    state:'123'
+    state:{
+        data:{}
+    },
+    mutations: {
+        changeData (state,obj) {
+          state.data = obj;
+        },
+    },
+    actions: {   
+            saveForm (context,obj){
+               context.commit('changeData', obj)
+            }
+    }
 }
-axios.get('api/wizardDate')
-    .then(response =>{
-        debugger
-        WzoardModule.state = response.data
-    })
-    .catch(function(error){
-        console.log(error)   
-    })
+
  export default WzoardModule

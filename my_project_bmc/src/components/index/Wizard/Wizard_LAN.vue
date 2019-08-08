@@ -27,10 +27,13 @@ export default {
             wizradSubnet_Mask:''        
         }
     },
-    created(){
-        debugger
-        console.log(this.$store.state.moduleWizardAPI.state);
+    // created(){
+    //     this.wizradIP = this.$store.state.moduleWizardAPI.data
         
+    // },
+    mounted(){
+           
+        this.wizradIP = this.$store.state.moduleWizardAPI.data
     },
     beforeRouteLeave (to, from, next) {
         console.log(this.wizradIP);

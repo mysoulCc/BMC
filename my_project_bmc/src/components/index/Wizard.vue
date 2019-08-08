@@ -31,9 +31,28 @@ export default {
         }
     },
     created(){     
-        this.WizardItems = this.$store.state.moduleWizardMenus.WizardHeaderMenu;         
+        this.WizardItems = this.$store.state.moduleWizardMenus.WizardHeaderMenu;
+        this.GetWizardApi()
+                 
     },
-    methods:{
+    methods:{     
+        async GetWizardApi(data){
+            // var res =  await axios.get('api/wizardDate')
+            //         .then(response =>{
+            //             wizardDate =  response                  
+            //         })
+            //         .catch(function(error){
+            //             console.log(error)   
+            //         })
+            // context.commit('changeData', wizardDate)
+            try {
+                debugger
+                let res = await this.axios.get('api/wizardDate', {params: data})
+                context.commit('changeData', res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        },
         Next:function(){
             this.activeId ++;
             switch (this.activeId) {
