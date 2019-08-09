@@ -107,3 +107,15 @@
     background: url(../images/menu.png) -576px -85px no-repeat;
 
 }
+.btn{
+    background-color: #fff;
+    border: 1px solid #e6c9c9;
+    border-radius: 6px;
+    padding: 6px 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #EA8511;
+    color: #fff;
+}

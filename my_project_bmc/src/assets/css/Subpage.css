@@ -1,6 +1,7 @@
 .SubpageContent{
     display: flex;
-    border-radius: 0 5px 5px 0;  
+    border-radius: 0 5px 5px 0;
+    min-height: 400px;  
 }
 .menuNav-left{
     display: flex;
@@ -22,11 +23,11 @@
     margin: 20px;
     padding: 20px;
 }
-#Wizard_LAN{
+#Wizard_LAN,#Wizard_WAN,#Wizard_Connection,#Wizard_WiFi{
     display: inline-block;
     padding: 30px 0 120px 40px;
 }
-#Wizard_LAN > h3{
+#Wizard_LAN > h3,#Wizard_WAN > h3,#Wizard_Connection > h3,#Wizard_WiFi > h3{
     background: #aaaaaa;
     display: inline-block;
     color: #fff;

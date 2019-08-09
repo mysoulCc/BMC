@@ -22,7 +22,7 @@
 export default {
     data(){
         return{
-            msg:'这是wizard第1页',
+            msg:'LAN',
             wizradIP:'',
             wizradSubnet_Mask:''        
         }
@@ -48,7 +48,10 @@ export default {
         }  
     },
     beforeRouteLeave (to, from, next) {
-        console.log(this.wizradIP);
+        let WizardLanValue =[];
+        WizardLanValue['ip'] = this.wizradIP;
+        WizardLanValue['SubnetMask'] = this.wizradSubnet_Mask;
+        this.$store.dispatch('saveFormSet',{WizardLanValue,msg:'LAN'});
         next();
     }
 }

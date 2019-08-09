@@ -2,19 +2,19 @@
     <div id="wizard"  class="SubpageContent">
         <ul class="WizardMenuHeader">
             <li class="wizardMenuClass" v-for="item in WizardItems">              
-                <router-link :to="`${item.path}`">
+                <router-link :to="`${item.path}`" :class="item.className">
                     <span>Step {{item.id}}</span>
                     {{item.name}}
                 </router-link>
             </li>
         </ul>
-        <div>
+        <div class="WizardContent">
             <router-view></router-view>
         </div>
-        <div class="wizardButton">
-            <input type="button" class='BackButton' value="Back" @click="Back()" v-if="activeId === 1 ? false:true">
-            <input type="button" class='NextButton' value="Apply" @click="doset()" v-if="activeId === 4 ? true:false">
-            <input type="button" class='NextButton' value="Next" @click="Next()" v-else>
+        <div class="wizardFooter">
+            <input type="button" class='BackButton btn' value="Back" @click="Back()" v-if="activeId === 1 ? false:true">
+            <input type="button" class='NextButton btn' value="Apply" @click="doset()" v-if="activeId === 4 ? true:false">
+            <input type="button" class='NextButton btn' value="Next" @click="Next()" v-else>
         </div>
         <v-Confirm :show-dialog="showDialog" :confirm-msg="Czas"></v-Confirm>
     </div>
@@ -79,6 +79,7 @@ export default {
         }
     },
     beforeRouteUpdate (to, from, next) {
+        $("."+from.path.replace("/","")).css('background-color','#0464BB');
        switch (to.path) {
            case '/Wizard_LAN':
                this.activeId = 1;
@@ -104,7 +105,15 @@ export default {
     #wizard{      
         flex-direction: column;        
     }
-    
+    .WizardMenuHeader{
+        flex: 1;
+    }
+    .WizardContent{
+        flex: 8;
+    }
+    .wizardFooter{
+        flex: 1;
+    }
     ul > li{
         display: inline-flex;
         background-color: #EBEBEB;
@@ -127,9 +136,9 @@ export default {
         font: bold 18px Verdana, Arial, Helvetica, sans-serif;
     }
     .router-link-active{
-        background-color: #EA8511;
+        background-color: #EA8511 !important;
         border: #EA8511 solid 1px;
-    }
+    }  
     .BackButton{
         float: left;
     }

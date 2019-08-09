@@ -1,6 +1,10 @@
 <template>
     <div id="Wizard_WAN">
-        {{msg}}
+        <span>Please consult with service provider for these settings. If not sure, leave them with default value.</span>
+        <h3><font>WAN Configuration</font></h3>  
+        <div class="wizardContentClass">
+           
+        </div>
     </div>
 </template>
 <script>
@@ -12,3 +16,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+    span{
+        display: block;
+        padding-bottom: 10px;
+        color: #0464BB;
+    }
+</style>
+
