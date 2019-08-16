@@ -55,10 +55,11 @@ export default {
     }
     #Wizard_WAN .has-gutter th{
         background-color: #aabbc5;
-        color: #fff;
         padding: 2px;
     }
-   
+    #Wizard_WAN .has-gutter th div{      
+        color: #fff;
+    }
 </style>
 
 
