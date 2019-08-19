@@ -9,7 +9,9 @@
             </li>
         </ul>
         <div class="WizardContent">
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </div>
         <div class="wizardFooter">
             <input type="button" class='BackButton btn' value="Back" @click="Back()" v-if="activeId === 1 ? false:true">
