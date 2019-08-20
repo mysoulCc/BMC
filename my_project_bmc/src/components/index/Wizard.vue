@@ -33,9 +33,25 @@ export default {
         }
     },
     created(){     
-        this.WizardItems = this.$store.state.moduleWizardMenus.WizardHeaderMenu;              
+        this.WizardItems = this.$store.state.moduleWizardMenus.WizardHeaderMenu;
+        this.GetWizardApi();
+        console.log(1);
+                    
     },
-    methods:{      
+    methods:{
+        async GetWizardApi(data){         
+            try {         
+                let res = await this.axios.get('api/wizardDate', {params: data});
+                this.$store.dispatch('saveForm',res.data);
+                debugger
+                console.log(this.$store.state.moduleWizardAPI.data.LanConfiguration.IpAddress);
+                               
+                //this.wizradIP = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpAddress;
+                //this.wizradSubnet_Mask = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpSubnetMask;
+            } catch (err) {
+                console.log(err)
+            }
+        },       
         Next:function(){
             this.activeId ++;
             switch (this.activeId) {
@@ -80,7 +96,7 @@ export default {
             },1000)
         }
     },
-    beforeRouteUpdate (to, from, next) {
+    beforeRouteUpdate (to, from, next) {     
         $("."+from.path.replace("/","")).css('background-color','#0464BB');
        switch (to.path) {
            case '/Wizard_LAN':

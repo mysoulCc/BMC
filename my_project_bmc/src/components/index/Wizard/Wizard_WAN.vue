@@ -36,22 +36,22 @@
                 >
                 </el-table-column>
                 <el-table-column
-                property="bm_apn_name"
+                prop="bm_apn_name"
                 label="APN"
                 >
                 </el-table-column>
                <el-table-column
-                property="bm_username"
+                prop="bm_username"
                 label="User"
                 >
                 </el-table-column>
                <el-table-column
-                property="bm_password"
+                prop="bm_password"
                 label="Password"
                 >
                 </el-table-column>
                <el-table-column
-                property="bm_profile_index"
+                prop="bm_pdp_type"
                 label="Protocol"
                 >
                 </el-table-column>
@@ -78,25 +78,33 @@ export default {
             WizardWANValue:[]
         }
       },
-      mounted(){
-        //debugger
-        this.tableDataBody = this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP;
-        console.log( this.tableDataBody);
-        
+      created(){
+           for (let bm_3GPP = 1; bm_3GPP <= this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP.bm_total; bm_3GPP++) {
+                if(this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP['APN_'+bm_3GPP]){
+                    this.tableDataBody[bm_3GPP-1] = this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP['APN_'+bm_3GPP];
+                    this.tableDataBody[bm_3GPP-1].bm_pdp_type =  this.tableDataBody[bm_3GPP-1].bm_pdp_type == "1"?"IPV4": this.tableDataBody[bm_3GPP-1].bm_pdp_type=="2"?"IPV6":"IPV4/IPV6";
+                }
+                   
+           }
+                 
+      },
+      mounted(){      
+        let storeDataBm3GPP = this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP;
          for (let index of this.tableData) {               
-            for (let bm_3GPP = 1; bm_3GPP <= this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP.bm_total; bm_3GPP++) {
-                if(this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP['APN_'+bm_3GPP]['bm_profile_index'] == 1){
-                    index.apn = this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP['APN_'+bm_3GPP]['bm_apn_name'];
+            for (let bm_3GPP = 1; bm_3GPP <= storeDataBm3GPP.bm_total; bm_3GPP++) {
+                if(storeDataBm3GPP['APN_'+bm_3GPP]['bm_profile_index'] == 1){
+                    index.apn = storeDataBm3GPP['APN_'+bm_3GPP]['bm_apn_name'];
                     this.WizardWANValue['IPv4Connection'] =  index.apn;
                     this.WizardWANValue['IPv6Connection'] =  index.apn;
                 }                   
             }              
-         }        
+         }
+        
       },
       methods:{
           handleCurrentChange(val){
               for (let index of this.tableData) {
-                    index.apn = val.apn;
+                    index.apn = val.bm_apn_name;
                     this.WizardWANValue['IPv4Connection'] =  index.apn;
                     this.WizardWANValue['IPv6Connection'] =  index.apn;      
             }
