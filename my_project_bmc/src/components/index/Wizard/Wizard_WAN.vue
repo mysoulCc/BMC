@@ -88,7 +88,7 @@ export default {
            }
                  
       },
-      mounted(){      
+      mounted(){     
         let storeDataBm3GPP = this.$store.state.moduleWizardAPI.data.bm_apn.bm_3GPP;
          for (let index of this.tableData) {               
             for (let bm_3GPP = 1; bm_3GPP <= storeDataBm3GPP.bm_total; bm_3GPP++) {

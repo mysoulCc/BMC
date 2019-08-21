@@ -32,24 +32,21 @@ export default {
         
     // },
     mounted(){
-       // this.GetWizardApi() 
-       console.log(2);
-       
-        this.wizradIP = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpAddress;
-        this.wizradSubnet_Mask = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpSubnetMask; 
+        this.GetWizardApi() 
+        
     },
-    // methods:{
-    //     async GetWizardApi(data){         
-    //         try {         
-    //             let res = await this.axios.get('api/wizardDate', {params: data});
-    //             this.$store.dispatch('saveForm',res.data);               
-    //             this.wizradIP = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpAddress;
-    //             this.wizradSubnet_Mask = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpSubnetMask;
-    //         } catch (err) {
-    //             console.log(err)
-    //         }
-    //     }  
-    // },
+    methods:{
+        async GetWizardApi(data){         
+            try {         
+                let res = await this.axios.get('api/wizardDate', {params: data});
+                this.$store.dispatch('saveForm',res.data);               
+                this.wizradIP = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpAddress;
+                this.wizradSubnet_Mask = this.$store.state.moduleWizardAPI.data.LanConfiguration.IpSubnetMask;
+            } catch (err) {
+                console.log(err)
+            }
+        }  
+    },
     beforeRouteLeave (to, from, next) {
         let WizardLanValue =[];
         WizardLanValue['ip'] = this.wizradIP;

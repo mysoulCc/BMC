@@ -30,6 +30,9 @@ export default {
   },
   created(){ 
       this.headermenus = this.$store.state.moduleHeaderMenus.headermenus 
+  },
+  mounted(){
+      this.$router.push('/');
   }
 }
 </script>
