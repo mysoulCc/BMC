@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import axios from 'axios'
 import store from '../store/store'
 import index from '@/components/index'
 import login from '@/components/login'
@@ -49,6 +50,7 @@ import Wizard_WAN from '@/components/index/Wizard/Wizard_WAN'
 import Wizard_WiFi from '@/components/index/Wizard/Wizard_WiFi'
 
 Vue.use(Router)
+Vue.prototype.axios = axios;
 
 const routers = [
   {
@@ -261,7 +263,6 @@ const routers = [
     component:login
   }
 ]
-
 const router = new Router({
   mode: 'history',
   routes: routers
@@ -269,7 +270,20 @@ const router = new Router({
 router.beforeEach((to,from,next) =>{
   if(sessionStorage.getItem('token')){
     store.commit('increment',to.matched[1].name);
-    next();
+    if(to.matched[1].name === 'Wizard'){
+        axios.get('api/wizardDate')
+        .then(response =>{            
+            store.dispatch('saveForm',response.data);
+            next(); 
+        })
+        .catch(function(error){
+            console.log(error)
+            
+        })
+    }else{
+      next();
+    }
+    
   }else{
     if(to.path == "/login"){
       next();
