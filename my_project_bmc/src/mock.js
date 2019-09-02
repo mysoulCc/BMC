@@ -84,6 +84,30 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
                 },
                 'bm_total':3
             }
+        },
+        'bm_internet_type':{
+            'internet':'3G',
+            'wan_info':{
+                'wan_select':'dhcp',
+                'dhcp':{
+                    'host_name':''
+                },
+                'pppoe':{
+                    'id_time':'0',
+                    'op_mode':'Manual',
+                    'passwd':'',
+                    'period':'60',
+                    'user_name':'',
+                    'ver_pswd':''
+                },
+                'static':{
+                    'getway':'',
+                    'ip_addr':'',
+                    'pri_dns':'',
+                    'sec_dns':'',
+                    'sub_mask':'255.255.255.0'
+                }
+            }
         }
     }
 })
