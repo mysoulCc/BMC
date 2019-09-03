@@ -7,7 +7,7 @@
                   <img src="../assets/images/msg_loading.gif">  
                 </div>
                 <div class="confirm_content">
-                   The device is rebooting,  Please wait {{confirmMsg}} seconds.
+                   The device is rebooting,  Please wait <span class="confirm_Time">{{confirmMsg}}</span> seconds.
                 </div>            
             </div>
         </div>
@@ -71,6 +71,11 @@ export default {
     }
     .confirm_content{
         flex: 4;
+    }
+    .confirm_Time{
+        color: red;
+        padding: 0 10px;
+        font-weight: bold;
     }
 </style>
 

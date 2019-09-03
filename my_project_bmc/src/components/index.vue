@@ -32,7 +32,7 @@ export default {
       this.headermenus = this.$store.state.moduleHeaderMenus.headermenus 
   },
   mounted(){
-      //this.$router.push('/');
+      this.$router.push('/');
   }
 }
 </script>

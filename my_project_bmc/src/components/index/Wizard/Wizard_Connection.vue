@@ -379,8 +379,38 @@ export default {
         }
     },
     beforeRouteLeave (to, from, next) {
-            // let _thisWizardWANValue = this.WizardWANValue;
-            // this.$store.dispatch('saveFormSet',{_thisWizardWANValue,msg:'WAN'});
+            let wConNection = new Array();
+            wConNection["internet"] = this.internetType;
+            if(this.internetType == 'WAN'){
+                wConNection["wan_info"] = new Array();
+                wConNection["wan_info"]["wan_select"] = this.wConnectionTypeValue;
+                switch (this.wConnectionTypeValue) {
+                    case 0:
+                         wConNection["wan_info"]["static"] = new Array();
+                        wConNection["wan_info"]["static"]["ip_addr"] = this.wStaticAddress;
+                        wConNection["wan_info"]["static"]["sub_mask"] = this.wStaticNetmask;
+                        wConNection["wan_info"]["static"]["getway"] = this.wStaticGateway;
+                        wConNection["wan_info"]["static"]["pri_dns"] = this.wPppoeIdleTime;
+                        wConNection["wan_info"]["static"]["sec_dns"] = this.wStaticSecDns;
+                        break;
+
+                    case 1:
+                        wConNection["wan_info"]["dhcp"] = new Array();
+                        wConNection["wan_info"]["dhcp"]["host_name"] = this.wDhcpName;
+                        break;
+
+                    default:
+                        wConNection["wan_info"]["pppoe"] = new Array();
+                        wConNection["wan_info"]["pppoe"]["user_name"] = this.wPppoeUser;
+                        wConNection["wan_info"]["pppoe"]["passwd"] = this.wPppoePwd;
+                        wConNection["wan_info"]["pppoe"]["ver_pswd"] = this.wPppoePwd2;
+                        wConNection["wan_info"]["pppoe"]["op_mode"] = this.wPppoeOPModeValue;
+                        wConNection["wan_info"]["pppoe"]["id_time"] = this.wDhcpName;
+                        wConNection["wan_info"]["pppoe"]["period"] = this.wPppoeRedialPeriod;
+                        break;
+                }
+            }
+            this.$store.dispatch('saveFormSet',{wConNection,msg:'Connection'});
             next();
     }
 }

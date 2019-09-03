@@ -272,9 +272,7 @@ router.beforeEach((to,from,next) =>{
     store.commit('increment',to.matched[1].name);
     if(to.matched[1].name === 'Wizard'){
         axios.get('api/wizardDate')
-        .then(response =>{
-            console.log(response.data);
-                        
+        .then(response =>{                      
             store.dispatch('saveForm',response.data);
             next(); 
         })

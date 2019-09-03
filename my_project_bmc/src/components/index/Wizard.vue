@@ -10,7 +10,7 @@
         </ul>
         <div class="WizardContent">
             <keep-alive>
-                <router-view></router-view>
+                <router-view></router-view>  
             </keep-alive>
         </div>
         <div class="wizardFooter">
@@ -33,7 +33,7 @@ export default {
         }
     },
     created(){     
-        this.WizardItems = this.$store.state.moduleWizardMenus.WizardHeaderMenu;            
+        this.WizardItems = this.$store.state.moduleWizardMenus.WizardHeaderMenu;           
     },
     methods:{   
         Next:function(){
@@ -68,7 +68,7 @@ export default {
                     break;
             }
         },
-        doset:function(){
+        doset:function(){     
             this.showDialog = true;
             let WizardCountdown = window.setInterval(() => {
                 this.Czas--;
@@ -81,7 +81,7 @@ export default {
         }
     },
     beforeRouteUpdate (to, from, next) {     
-        $("."+from.path.replace("/","")).css('background-color','#0464BB');
+        $("."+from.path.replace("/","")).css('background-color','#0464BB');      
        switch (to.path) {
            case '/Wizard_LAN':
                this.activeId = 1;

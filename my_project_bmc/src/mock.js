@@ -108,6 +108,15 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
                     'sub_mask':'255.255.255.0'
                 }
             }
+        },
+        'get_wifi_cfg':{
+            'wifi':{
+                'AP1':{
+                    'enable':'1',
+                    'ssid':Random.word(12),
+                    'wpa_passphrase':Random.natural(10000000,100000000),
+                }
+            }
         }
     }
 })

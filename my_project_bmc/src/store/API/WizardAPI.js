@@ -7,29 +7,29 @@ const WzoardModule = {
                 // SubnetMask:''
             },
             Connection:{
-                internetType:'',
-                _connectionType:'',
-                DHCP:{
-                    hostname:''
-                },
-                STATIC:{
-                    staticIP:'',
-                    staticNetmask:'',
-                    staticGateway:'',
-                    staticPriDns:'',
-                    staticSecDns:''
-                },
-                PPPOE:{
-                    pppoeUser:'',
-                    pppoePass:'',
-                    pppoePassVerify:'',
-                    _wPppoeOPMode:'',
-                    pppoeIdleTime:''
-                }
+                // internetType:'',
+                // _connectionType:'',
+                // DHCP:{
+                //     hostname:''
+                // },
+                // STATIC:{
+                //     staticIP:'',
+                //     staticNetmask:'',
+                //     staticGateway:'',
+                //     staticPriDns:'',
+                //     staticSecDns:''
+                // },
+                // PPPOE:{
+                //     pppoeUser:'',
+                //     pppoePass:'',
+                //     pppoePassVerify:'',
+                //     _wPppoeOPMode:'',
+                //     pppoeIdleTime:''
+                // }
             },
             Wifi:{
-                SSID1:'',
-                Password:''
+                // SSID1:'',
+                // Password:''
             }
         }
     },
@@ -44,10 +44,11 @@ const WzoardModule = {
                     break;
             
                 case 'Connection':
-                    
+                    state.SetData.Connection = obj.wConNection;
                     break;        
             
                 default:
+                        state.SetData.Wifi = obj.getwWIFIStatus;
                     break;
             }
         }
