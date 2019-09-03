@@ -5,13 +5,13 @@
             <tr>
                 <td>SSID</td>
                 <td>
-                    <input type="text" v-model="wWifiSSID">
+                    <input type="text" v-model="wWifiSSID" @blur="wSSIDValue($event)">
                 </td>
             </tr>
             <tr>
                 <td>Password</td>
                 <td>
-                    <input type="text" v-model="wWifiPwd">
+                    <input type="text" v-model="wWifiPwd" @blur="wPwdValue($event)">
                 </td>
             </tr>
                                
@@ -30,22 +30,23 @@ export default {
         this.wWifiSSID = this.$store.state.moduleWizardAPI.data.get_wifi_cfg.wifi.AP1.ssid;
         this.wWifiPwd = this.$store.state.moduleWizardAPI.data.get_wifi_cfg.wifi.AP1.wpa_passphrase;
     },
-    watch:{
-        wWifiSSID(val){
+    methods:{
+        wSSIDValue(v){
             let getwWIFIStatus = new Array();
-            getwWIFIStatus['ssid'] = val;
+            getwWIFIStatus['ssid'] = v.target.value;
             getwWIFIStatus['wpa_passphrase'] = this.wWifiPwd;
             this.$store.commit('WizardSet',{getwWIFIStatus,msg:'WIFI'});
             console.log(this.$store.state.moduleWizardAPI.SetData);
         },
-        wWifiPwd(val){
+        wPwdValue(v){
             let getwWIFIStatus = new Array();
             getwWIFIStatus['ssid'] = this.wWifiSSID;
-            getwWIFIStatus['wpa_passphrase'] = val;
+            getwWIFIStatus['wpa_passphrase'] = v.target.value;
             this.$store.commit('WizardSet',{getwWIFIStatus,msg:'WIFI'});
             console.log(this.$store.state.moduleWizardAPI.SetData);
         }
     }
+   
 }
 </script>
 <style scoped>
