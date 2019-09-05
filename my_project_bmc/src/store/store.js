@@ -9,6 +9,7 @@ import SystemPagingMenu from './SystemPagingMenu'
 import WizardPagingMenu from './WizardPagingMenu'
 
 import WizardAPI from '../store/API/WizardAPI'
+import wConnection from '../store/API/wConnection'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -37,7 +38,8 @@ const store = new Vuex.Store({
          moduleSecurityMenus:SecurityPagingMenu,
          moduleSystemMenus:SystemPagingMenu,
          moduleWizardMenus:WizardPagingMenu,
-         moduleWizardAPI:WizardAPI
+         moduleWizardAPI:WizardAPI,
+         modulewConnection:wConnection
       }
 })
 export default store;

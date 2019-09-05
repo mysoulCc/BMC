@@ -120,3 +120,20 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
         }
     }
 })
+Mock.mock('api/wConnection', 'get',(req,res)=>{
+    return{      
+        'apn':{
+            'COMMON':{
+                'auto_conx':'1',
+                'roaming_conx':'0',
+            },
+            'ipv4':{
+                'status':'Connecting'
+            },
+            'ipv6':{
+                'status':'Disconnecting'
+            }
+        },
+        
+    }
+})
