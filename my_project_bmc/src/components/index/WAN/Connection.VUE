@@ -1,5 +1,5 @@
 <template>
-    <div id="Connection">
+    <div class="Paging-content-style">
         <div class="SubpageContent-Content">
             <el-row :gutter="20">
                 <el-col>
@@ -189,6 +189,10 @@ export default {
             }
             let doWanConf = val;
             this.$store.commit('wConNection',{doWanConf,msg:mode});
+            setTimeout(() => {
+                this.loadingWan = false;
+                this.loadingRoaming = false;
+            }, 3000);
         },
         handleClick(index){
             let indexStatus = index.ApnStatus;
@@ -219,11 +223,11 @@ export default {
 
 </style>
 <style>
-    #Connection .has-gutter th{
+    .Paging-content-style .has-gutter th{
         background-color: #aabbc5;
         padding: 2px;
     }
-    #Connection .has-gutter th div{      
+    .Paging-content-style .has-gutter th div{      
         color: #fff;
     }
 </style>

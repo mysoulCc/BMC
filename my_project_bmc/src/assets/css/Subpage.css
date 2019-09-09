@@ -27,7 +27,7 @@
 .SubpageContent-right{
     flex: 12;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 #home , #wizard{
     background-color: #fff;
@@ -52,7 +52,7 @@
     padding: 20px;
 }
 /* index css */
-#Connection{
+.Paging-content-style{
     border: 1px solid #8bd3f4;
     border-radius: 0 10px 10px 0;
     background-color: #fff;
