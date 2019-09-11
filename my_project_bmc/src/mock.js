@@ -86,7 +86,7 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
             }
         },
         'bm_internet_type':{
-            'internet':'3G',
+            'internet':'WAN',
             'wan_info':{
                 'wan_select':'dhcp',
                 'dhcp':{
