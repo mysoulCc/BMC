@@ -128,3 +128,9 @@
     font-size: 14px;
     flex: 2;
 }
+.grid-content-wan-settings{
+    margin: 4px 0 !important;
+}
+.grid-content-span-flex,.el-input{
+    flex: 1;
+} 

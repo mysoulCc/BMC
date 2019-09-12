@@ -230,6 +230,37 @@
                             </div>
                         </el-col>        
                     </el-row>
+                    <el-row :gutter="16"  class='grid-content-wan-settings'>
+                        <el-col :span="6" :offset="4">
+                            <div class="grid-content bg-purple grid-content-flex">
+                                <span class="grid-content-span-flex">Operation Mode</span>
+                                <el-select class="grid-content-select-flex" size='mini' v-model="pOperationMode">
+                                    <el-option
+                                    v-for="item in poptionWANPPPOE"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                        </el-col>        
+                    </el-row>
+                    <el-row :gutter="16"  class='grid-content-wan-settings' v-show="pOperationMode == '1'">
+                        <el-col :span="6" :offset="4">
+                            <div class="grid-content bg-purple grid-content-flex">
+                                <span class="grid-content-span-flex">On demand Mode:  Idle Time</span>
+                                <el-input
+                                    type="text"
+                                    v-model="pIdleTime"
+                                    maxlength="5"
+                                    show-word-limit
+                                    size='mini'
+                                    >
+                                </el-input>
+                            </div>
+                        </el-col>        
+                    </el-row>
                 </div>
                 <el-row>
                     <el-col :span="1" :push="22" class="grid-content-button-flex">
@@ -304,17 +335,74 @@ export default {
             pUserName:'',
             pPassword:'',
             pVerPwd:'',
+            poptionWANPPPOE:[
+                {
+                    value:'0',
+                    label:'Keep Alive',
+                },
+                {
+                    value:'1',
+                    label:'On demand',
+                },
+                {
+                    value:'2',
+                    label:'Manual',
+                }
+            ],
+            pOperationMode:'0',
+            pIdleTime:'0'
         }
     },
     created(){
         this.WANTypeStatus = this.valueWAN;
         this.axios.get('api/wizardDate')
-                    .then(request => {
+                    .then(request => {                     
                         this.InternetTyperadio = request.data.bm_internet_type.internet;
                         if(this.InternetTyperadio === 'WAN')
                             this.isShow = true;
                         else
                             this.isShow = false;
+                        switch (request.data.bm_internet_type.wan_info.wan_select) {
+                            case 'dhcp':
+                                this.valueWAN = '1';
+                                break;
+                            case 'pppoe':
+                                this.valueWAN = '2';
+                                break;
+                            case 'static':
+                                this.valueWAN = '0';
+                                break;
+                            
+                        };
+                        this.WANTypeStatus = this.valueWAN;
+                        //get static
+                        this.sIpAddress = request.data.bm_internet_type.wan_info.static.ip_addr;
+                        this.sSubnetMask = request.data.bm_internet_type.wan_info.static.sub_mask;
+                        this.sDefGateway = request.data.bm_internet_type.wan_info.static.getway;
+                        this.sPrDNS = request.data.bm_internet_type.wan_info.static.pri_dns;
+                        this.sSecDNS = request.data.bm_internet_type.wan_info.static.sec_dns;
+                        //get DHCP
+                        this.dHostName = request.data.bm_internet_type.wan_info.dhcp.host_name;
+                        this.dDnsManually = request.data.bm_internet_type.wan_info.dhcp.dns_mode;
+                        this.dPrDNS = request.data.bm_internet_type.wan_info.dhcp.pri_dns;
+                        this.dSecDNS = request.data.bm_internet_type.wan_info.dhcp.sec_dns;
+                        //get PPPOE
+                        this.pUserName = request.data.bm_internet_type.wan_info.pppoe.user_name;
+                        this.pPassword = request.data.bm_internet_type.wan_info.pppoe.passwd;
+                        this.pVerPwd = request.data.bm_internet_type.wan_info.pppoe.ver_pswd;
+                        this.pIdleTime = request.data.bm_internet_type.wan_info.pppoe.id_time;
+                        switch (request.data.bm_internet_type.wan_info.pppoe.op_mode) {
+                            case 'Manual':
+                                this.pOperationMode = '2';
+                                break;
+                            case 'KeepAlive':
+                                this.pOperationMode = '0';
+                                break;
+                            case 'Ondemand':
+                                this.pOperationMode = '1';
+                                break;
+                            
+                        };                        
                     })
                     .catch(error => {
                         console.log(error);                      
@@ -328,7 +416,7 @@ export default {
         //网络连接类型页面切换事件
         WANConnectionTypeStatus(val){
             this.WANTypeStatus = val;
-        },
+        },       
         //dosetInternetApi
         setInternetType(){            
             this.loadingInternet = true;
@@ -396,12 +484,6 @@ export default {
     .el-radio-group{
         margin: 10px 40px;
     }
-    .grid-content-span-flex,.el-input{
-        flex: 1;
-    }
-    .grid-content-wan-settings{
-        margin: 4px 0;
-    } 
 </style>
 <style>
     .Paging-content-style .has-gutter th{

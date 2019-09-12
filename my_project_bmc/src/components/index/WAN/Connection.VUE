@@ -144,7 +144,7 @@ export default {
         let _this = this;
         _this.axios.get('api/wConnection')
             .then(response =>{
-                 console.log(response.data);
+                 
                  _this.value = response.data.apn.COMMON.auto_conx;
                  _this.RoamingValue = response.data.apn.COMMON.roaming_conx;
                  for(let wtableData of _this.tableData){

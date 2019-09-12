@@ -64,7 +64,8 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
                     'bm_username':'',
                     'bm_password':'',
                     'bm_profile_index':'1',
-                    'bm_pdp_type':'2'
+                    'bm_pdp_type':'2',
+                    'bm_auth_preference':'3'
                 },
                 'APN_2':{
                     'bm_apn_name':'cmnet',
@@ -72,7 +73,8 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
                     'bm_username':'guest',
                     'bm_password':'guest',
                     'bm_profile_index':'3',
-                    'bm_pdp_type':'3'
+                    'bm_pdp_type':'3',
+                    'bm_auth_preference':'2'
                 },
                 'APN_3':{
                     'bm_apn_name':'3gwap',
@@ -80,7 +82,8 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
                     'bm_username':'',
                     'bm_password':'',
                     'bm_profile_index':'2',
-                    'bm_pdp_type':'1'
+                    'bm_pdp_type':'1',
+                    'bm_auth_preference':'1'
                 },
                 'bm_total':3
             }
@@ -90,7 +93,10 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
             'wan_info':{
                 'wan_select':'dhcp',
                 'dhcp':{
-                    'host_name':''
+                    'host_name':'BmRouter',
+                    'dns_mode':'0',
+                    'pri_dns':'0.0.0.0',
+                    'sec_dns':'0.0.0.0'
                 },
                 'pppoe':{
                     'id_time':'0',
