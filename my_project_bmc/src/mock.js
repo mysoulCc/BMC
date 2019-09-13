@@ -82,7 +82,7 @@ Mock.mock('api/wizardDate', 'get',(req,res)=>{
                     'bm_username':'',
                     'bm_password':'',
                     'bm_profile_index':'2',
-                    'bm_pdp_type':'1',
+                    'bm_pdp_type':'0',
                     'bm_auth_preference':'1'
                 },
                 'bm_total':3

@@ -12,8 +12,8 @@
                 </el-col>
             </el-row>
             <div v-if="LabelContent === 'first'">
-                <el-row :gutter="16" class='grid-content-wan-settings'>
-                    <el-col :span="5" :offset="4">
+                <el-row :gutter="16">
+                    <el-col :span="7" :offset="4">
                         <div class="grid-content bg-purple grid-content-flex">
                             <span class="grid-content-span-flex">Profile List</span>
                             <el-select class="grid-content-select-flex" size='mini' v-model="ApnMode" @change="ApnProfileList">
@@ -24,6 +24,9 @@
                                 :value="item.value">
                                 </el-option>
                             </el-select>
+                            <el-col :span="1" class="grid-content-button-flex">
+                                <el-button type="info" size='small' :loading="loadingApn" :disabled='SetConnectDisabled' @click="SetConnect(`${ApnMode}`)">Set Connect</el-button>
+                            </el-col>
                         </div>
                     </el-col>        
                 </el-row>
@@ -37,6 +40,7 @@
                             maxlength="15"
                             show-word-limit
                             size='mini'
+                            disabled
                             >
                             </el-input>
                         </div>
@@ -124,6 +128,18 @@
                             </el-select>
                         </div>
                     </el-col>        
+                </el-row>
+                <el-row :gutter="16">
+                    <el-col :span="1" :offset="20">
+                        <div class="grid-content bg-purple grid-content-flex">
+                            <el-button type="success" :loading="loadingApply" :disabled="doSetAPNDisabled" @click="doSetAPN(`${ApnMode}`)">Apply</el-button>
+                        </div>
+                    </el-col>        
+                    <el-col :span="1" :offset="1">
+                        <div class="grid-content bg-purple grid-content-flex">
+                             <el-button type="success" :loading="loadingDelete" :disabled="doDeleteAPNDisabled" @click="doDeleteAPN(`${ApnMode}`)">Delete</el-button>
+                        </div>
+                    </el-col>        
                 </el-row> 
             </div>          
         </div>
@@ -138,6 +154,12 @@ export default {
             LabelContent: 'first',
             optionsAPN:[],
             ApnMode:'',
+            loadingApn:false,
+            SetConnectDisabled:false,
+            loadingApply:false,
+            loadingDelete:false,
+            doSetAPNDisabled:false,
+            doDeleteAPNDisabled:false,
             //get api apnlist
             apnlist:[],
             optionsAPNPDPType:[
@@ -186,10 +208,10 @@ export default {
         handleClick(tab, event){
            this.LabelContent = tab.paneName;
         },
+        //获取APN列表
         doGetApi(){
             this.axios.get('api/wizardDate')
                     .then(request => {
-                        console.log(request.data.bm_apn.bm_3GPP);
                         for (let bm_3GPP = 1; bm_3GPP <= request.data.bm_apn.bm_3GPP.bm_total; bm_3GPP++) {
                             if(request.data.bm_apn.bm_3GPP['APN_'+bm_3GPP]){
                                 this.apnlist[bm_3GPP-1] = request.data.bm_apn.bm_3GPP['APN_'+bm_3GPP];                        
@@ -207,17 +229,39 @@ export default {
                                 this.apnPassword = item.bm_password;
                                 this.aPDPTypeMode = item.bm_pdp_type;
                                 this.aAutPreferenceMode = item.bm_auth_preference;
-                                item.bm_profile_name = '(*)' + item.bm_profile_name;
+                                this.doDeleteAPNDisabled = true;
+                                return {
+                                    label: '(*)' + item.bm_profile_name,
+                                    value: item.bm_profile_index 
+                                }
+                            }else{
+                                return {
+                                    label: item.bm_profile_name,
+                                    value: item.bm_profile_index 
+                                }
                             }
-                            return {
-                                label: item.bm_profile_name,
-                                value: item.bm_profile_index 
-                            }
+                            
                         })
                         r[this.apnlist.length] = [];
                         r[this.apnlist.length]['value'] = 'NEW';
                         r[this.apnlist.length]['label'] = 'Add New';
-                        this.optionsAPN = r;        
+                        if(r.length <= 1){
+                            this.doDeleteAPNDisabled = true;
+                            this.SetConnectDisabled = true;
+                            this.ApnMode = r[0].value;
+                            this.apnProfileId = 'NEW'
+                            this.apnName = '';
+                            this.apnAPN = '';
+                            this.apnUser = '';
+                            this.apnPassword = '';
+                            this.aPDPTypeMode = '3';
+                            this.aAutPreferenceMode = '3';
+                        }else{
+                            this.doSetAPNDisabled = true;
+                            this.SetConnectDisabled = false;
+                        } 
+                        this.optionsAPN = r;
+                              
                     })
                     .catch(error => {
                         console.log(error);                      
@@ -226,6 +270,15 @@ export default {
         },
         //切换apn
         ApnProfileList(val){
+            if(val == 'NEW'){
+                this.SetConnectDisabled = true;
+                this.doDeleteAPNDisabled = true;
+                this.doSetAPNDisabled = false;
+            }else{
+                this.SetConnectDisabled = false;
+                this.doDeleteAPNDisabled = false;
+                this.doSetAPNDisabled = true;
+            }
             for (let index = 0; index < this.apnlist.length; index++) {
                 if(val == this.apnlist[index].bm_profile_index){
                     this.ApnMode = this.apnlist[index].bm_profile_index;
@@ -236,9 +289,61 @@ export default {
                     this.apnPassword = this.apnlist[index].bm_password;
                     this.aPDPTypeMode = this.apnlist[index].bm_pdp_type;
                     this.aAutPreferenceMode = this.apnlist[index].bm_auth_preference;
-                    this.apnlist[index].bm_profile_name = '(*)' + this.apnlist[index].bm_profile_name;
+                }else if(val == 'NEW'){
+                    
+                    this.apnProfileId = 'NEW'
+                    this.apnName = '';
+                    this.apnAPN = '';
+                    this.apnUser = '';
+                    this.apnPassword = '';
+                    this.aPDPTypeMode = '3';
+                    this.aAutPreferenceMode = '3';
                 }
             }           
+        },
+        //设置默认APN
+        SetConnect(val){
+            this.loadingApn = true;           
+            this.ApnMode = val; 
+            setTimeout(() => {
+                let SetConnectApn = this.optionsAPN.map(item => {
+                    if(val == item.value){
+                        item.label = item.label.replace('(*)', '');
+                        return {
+                            label: '(*)' + item.label,
+                            value: item.value 
+                        }
+                    }else{                      
+                        return {
+                            label: item.label.replace('(*)', ''),
+                            value: item.value 
+                        }
+                    }              
+                       
+                })
+                this.optionsAPN = SetConnectApn;
+                this.loadingApn = false;
+            }, 3000);
+        },
+        //添加APN
+        doSetAPN(val){
+            this.loadingApply = true;
+            setTimeout(() => {
+                this.loadingApply = false;
+            }, 3000);  
+        },
+        //删除APN
+        doDeleteAPN(val){
+            this.loadingDelete = true;
+            setTimeout(() => {
+                this.loadingDelete = false;
+                this.optionsAPN = this.optionsAPN.filter((item) => {
+                    if(item.value == '1'){
+                       this.ApnProfileList(item.value);
+                    }   
+                    return item.value != val;
+                });
+            }, 3000); 
         }
     }
 }
