@@ -143,3 +143,17 @@ Mock.mock('api/wConnection', 'get',(req,res)=>{
         
     }
 })
+Mock.mock('api/wCurrent_network_pref', 'get',(req,res)=>{
+    return{      
+        'current_network_pref':28
+    }
+})
+Mock.mock('api/wpin_sim', 'get',(req,res)=>{
+    return{      
+        'cmd_status':'Done',
+        'result':3,
+        'retry':3,
+        'sim_stus':0,
+        'status':1
+    }
+})
