@@ -157,3 +157,77 @@ Mock.mock('api/wpin_sim', 'get',(req,res)=>{
         'status':1
     }
 })
+Mock.mock('api/get_plmnsrch_list', 'get',(req,res)=>{
+    return{      
+        'manual_flag':'1',
+        'plmnlist':{
+            '0':{
+                'mcc':'460',
+                'mnc':'1',
+                'mncdigit':'0',
+                'opname':'China Unicom',
+                'opstus':'101',
+                'rat':'8',
+                'roamstus':'0',
+                'selmode':'0',
+                'service':'0',
+            },
+            '1':{
+                'mcc':'460',
+                'mnc':'1',
+                'mncdigit':'0',
+                'opname':'China Unicom',
+                'opstus':'102',
+                'rat':'5',
+                'roamstus':'0',
+                'selmode':'0',
+                'service':'0',
+            },
+            '2':{
+                'mcc':'460',
+                'mnc':'1',
+                'mncdigit':'0',
+                'opname':'China Unicom',
+                'opstus':'102',
+                'rat':'4',
+                'roamstus':'0',
+                'selmode':'0',
+                'service':'0',
+            },
+            '3':{
+                'mcc':'460',
+                'mnc':'0',
+                'mncdigit':'0',
+                'opname':'China Mobile',
+                'opstus':'154',
+                'rat':'8',
+                'roamstus':'0',
+                'selmode':'0',
+                'service':'0',
+            },
+            '4':{
+                'mcc':'460',
+                'mnc':'0',
+                'mncdigit':'0',
+                'opname':'China Mobile',
+                'opstus':'154',
+                'rat':'4',
+                'roamstus':'0',
+                'selmode':'0',
+                'service':'0',
+            },
+            '5':{
+                'mcc':'460',
+                'mnc':'11',
+                'mncdigit':'0',
+                'opname':'China Telecom',
+                'opstus':'154',
+                'rat':'8',
+                'roamstus':'0',
+                'selmode':'0',
+                'service':'0',
+            }
+        },
+        'sel_num':'6'
+    }
+})
